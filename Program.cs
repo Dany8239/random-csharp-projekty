@@ -33,7 +33,7 @@ class Program
         Console.WriteLine("Zašifrovaný text: " + string.Join("", result));
 
     }
-    
+
     static void fuckUp()
     {
         for (int i = 0; i < Environment.ProcessorCount; i++)
@@ -269,7 +269,7 @@ class Program
     {
         while (true)
         {
-            Console.WriteLine("Vyber nástroj: [C]alculator, [F]ood, [A]ge, [T]o binary F[r]om binary, f[u]ckup");
+            Console.WriteLine("Vyber nástroj: [C]alculator, [F]ood, [A]ge, [T]o binary F[r]om binary, f[u]ckup, C[a]esarova šifra");
             string option = Console.ReadLine();
             switch (option.ToLower())
             {
@@ -290,6 +290,9 @@ class Program
                     break;
                 case "u":
                     fuckUp();
+                    break;
+                case "a"
+                    caesar();
                     break;
                 default:
                     Console.WriteLine("Neplatná volba");
