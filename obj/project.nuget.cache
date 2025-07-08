@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "4/kRigQPGqMUfj1FQrASH/8lwn4svhhQ7GbYV6cMTsK7O97ctmOQ2hU1qfWLUZR7qNQa5D88QGbHdKCtsJrcbA==",
+  "success": true,
+  "projectFilePath": "/home/student/DanC#/Program/DanC#.csproj",
+  "expectedPackageFiles": [
+    "/home/student/.nuget/packages/microsoft.netcore.app.ref/6.0.8/microsoft.netcore.app.ref.6.0.8.nupkg.sha512",
+    "/home/student/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.8/microsoft.aspnetcore.app.ref.6.0.8.nupkg.sha512",
+    "/home/student/.nuget/packages/microsoft.netcore.app.host.linux-x64/6.0.8/microsoft.netcore.app.host.linux-x64.6.0.8.nupkg.sha512"
+  ],
+  "logs": []
+}

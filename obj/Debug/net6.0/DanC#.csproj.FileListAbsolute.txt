@@ -1,0 +1,15 @@
+/home/student/DanC#/Program/bin/Debug/net6.0/DanC#
+/home/student/DanC#/Program/bin/Debug/net6.0/DanC#.deps.json
+/home/student/DanC#/Program/bin/Debug/net6.0/DanC#.runtimeconfig.json
+/home/student/DanC#/Program/bin/Debug/net6.0/DanC#.dll
+/home/student/DanC#/Program/bin/Debug/net6.0/DanC#.pdb
+/home/student/DanC#/Program/obj/Debug/net6.0/DanC#.csproj.AssemblyReference.cache
+/home/student/DanC#/Program/obj/Debug/net6.0/DanC#.GeneratedMSBuildEditorConfig.editorconfig
+/home/student/DanC#/Program/obj/Debug/net6.0/DanC#.AssemblyInfoInputs.cache
+/home/student/DanC#/Program/obj/Debug/net6.0/DanC#.AssemblyInfo.cs
+/home/student/DanC#/Program/obj/Debug/net6.0/DanC#.csproj.CoreCompileInputs.cache
+/home/student/DanC#/Program/obj/Debug/net6.0/DanC#.dll
+/home/student/DanC#/Program/obj/Debug/net6.0/refint/DanC#.dll
+/home/student/DanC#/Program/obj/Debug/net6.0/DanC#.pdb
+/home/student/DanC#/Program/obj/Debug/net6.0/DanC#.genruntimeconfig.cache
+/home/student/DanC#/Program/obj/Debug/net6.0/ref/DanC#.dll
