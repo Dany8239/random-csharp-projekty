@@ -39,9 +39,10 @@ class Program
         Console.WriteLine("Vítej v casinu!\n ----------\n\n");
         int money = 1000;
         Random rnd = new Random();
-
+        int spinCount = 0;
         while(money > 0)
         {
+            spinCount++;
             Thread.Sleep(650);
             Console.WriteLine($"\nAktuálně máš {money} korun");
             Console.WriteLine("Zadej sázku");
@@ -56,15 +57,42 @@ class Program
                 Console.WriteLine("Lol broke ass bitch zadej sázku na kterou atually máš bez prodeje orgánů");
                 continue;
             }
+
+            Console.WriteLine("Zadej počet čísel v automatu, minimum je 5(psst... od sedmi máš bonus)");
+            if(!int.TryParse(Console.ReadLine(), out int range) || bet < 5)
+            {
+                Console.WriteLine("Neplatná hodnota");
+                continue;
+            }
+            
             money -= bet;
-            int slot1 = rnd.Next(1, 4);
-            int slot2 = rnd.Next(1, 4);
-            int slot3 = rnd.Next(1, 4);
+            int slot1, slot2, slot3;
+
+            if (spinCount <= 3)
+            {
+                slot1 = slot2 = rnd.Next(1, range + 1);
+                if (spinCount == 2)
+                { 
+                    slot3 = slot1;
+                }
+                else
+                {
+                    slot3 = rnd.Next(1, range + 1);
+                }
+
+            }
+            else
+            {
+                slot1 = rnd.Next(1, range + 1);
+                slot2 = rnd.Next(1, range + 1);
+                slot3 = rnd.Next(1, range + 1);
+            }
+
             Console.WriteLine("\n");
 
-            for(int i = 0; i < 50; i++)
+            for(int i = 0; i < 40; i++)
             {
-                Console.Write("\r" + rnd.Next(1, 4) + " " + rnd.Next(1, 4) + " " + rnd.Next(1, 4));
+                Console.Write("\r" + rnd.Next(1, range + 1) + " " + rnd.Next(1, range + 1) + " " + rnd.Next(1, range + 1));
                 Thread.Sleep(100);
             }
             Console.Write("\r" + slot1 + " " + slot2 + " " + slot3);
@@ -73,15 +101,27 @@ class Program
 
             if(slot1 == slot2 && slot2 == slot3)
             {
-                bet *= 10;
-                Console.WriteLine($"\nJackpot! Výhral jsi {bet} korun!");
-                money += bet;
+                int win = bet * 10;
+                if(range < 8)
+                {
+                    win = (int)(win * ((double)range / 10 + 0.3));
+                }
+                Console.WriteLine($"\nJackpot! Výhral jsi {win} korun!");
+                money += win;
             }
             else if (slot1 == slot2 || slot1 == slot3 || slot2 == slot3)
             {
-                bet *= 2;
-                Console.WriteLine($"\nBig win! Výhral jsi {bet} korun!");
-                money += bet;
+                int win = bet * 2;
+                if(range < 8)
+                {
+                    bet = (int)(win * ((double)range / 10 + 0.3));
+                }
+                else
+                {
+                    win += bet/10;
+                }
+                Console.WriteLine($"\nBig win! Výhral jsi {win} korun!");
+                money += win;
             }
             else
             {
