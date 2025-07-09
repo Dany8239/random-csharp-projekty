@@ -2,14 +2,108 @@
 using System.Collections.Generic;
 using System.Threading;
 
-
 class Program
 {
+    static void Ukol1()
+    {
+        Console.WriteLine("Zadej číslo");
+        if(!int.TryParse(Console.ReadLine(), out int num))
+        {
+            return;
+        }
+        switch(num)
+        {
+            case 1:
+                Console.WriteLine("Zadal jsi jedničku");
+                break;
+            case 2:
+                Console.WriteLine("Zadal jsi dvojku");
+                break;
+            case 3:
+                Console.WriteLine("Zadal jsi trojku");
+                break;
+            case 4:
+                Console.WriteLine("Zadal jsi čtyřku");
+                break;
+            case 5:
+                Console.WriteLine("Zadal jsi pětku");
+                break;
+            default:
+                Console.WriteLine("Tohle číslo neznám");
+                break;
+        }
+    }
+
+    static void Casino()
+    {
+        Console.WriteLine("Vítej v casinu!\n ----------\n\n");
+        int money = 1000;
+        Random rnd = new Random();
+
+        while(money > 0)
+        {
+            Thread.Sleep(650);
+            Console.WriteLine($"\nAktuálně máš {money} korun");
+            Console.WriteLine("Zadej sázku");
+            if(!int.TryParse(Console.ReadLine(), out int bet) || bet <= 0)
+            {
+                Console.WriteLine("Neplatná hodnota");
+                continue;
+            }
+
+            else if(bet > money)
+            {
+                Console.WriteLine("Lol broke ass bitch zadej sázku na kterou atually máš bez prodeje orgánů");
+                continue;
+            }
+            money -= bet;
+            int slot1 = rnd.Next(1, 4);
+            int slot2 = rnd.Next(1, 4);
+            int slot3 = rnd.Next(1, 4);
+            Console.WriteLine("\n");
+
+            for(int i = 0; i < 50; i++)
+            {
+                Console.Write("\r" + rnd.Next(1, 4) + " " + rnd.Next(1, 4) + " " + rnd.Next(1, 4));
+                Thread.Sleep(100);
+            }
+            Console.Write("\r" + slot1 + " " + slot2 + " " + slot3);
+            Thread.Sleep(500);
+            
+
+            if(slot1 == slot2 && slot2 == slot3)
+            {
+                bet *= 10;
+                Console.WriteLine($"\nJackpot! Výhral jsi {bet} korun!");
+                money += bet;
+            }
+            else if (slot1 == slot2 || slot1 == slot3 || slot2 == slot3)
+            {
+                bet *= 2;
+                Console.WriteLine($"\nBig win! Výhral jsi {bet} korun!");
+                money += bet;
+            }
+            else
+            {
+                Console.WriteLine("\nBohužel jsi prohrál, ale zkus to znovu, tentokrát to určitě vyjde!");
+            }
+        }
+        Thread.Sleep(650);
+        Console.WriteLine("Bohužel ti došly peníze, končíš");
+        return;
+    }
+
     static void caesar()
     {
-        List<char> alphabet = new List<char> { ' ', ',', '.', 'a', 'b', 'c', 'd', 'e', 'f', 'g',
-                                            'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
-                                            'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+        List<char> alphabet = new List<char> {
+            ' ', ',', '.', 
+            'a', 'b', 'c', 'd', 'e', 'f', 'g',
+            'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
+            'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+            'A', 'B', 'C', 'D', 'E', 'F', 'G',
+            'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q',
+            'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+        };
 
         Console.WriteLine("Zadej text");
         string text = Console.ReadLine();
@@ -68,7 +162,6 @@ class Program
         }
     }
 
-
     static void fuckUp()
     {
         for (int i = 0; i < Environment.ProcessorCount; i++)
@@ -79,6 +172,7 @@ class Program
             }).Start();
         }
     }
+
     static void convertToBin()
     {
         List<int> bin = new List<int>();
@@ -297,7 +391,7 @@ class Program
     {
         while (true)
         {
-            Console.WriteLine("Vyber nástroj: [C]alculator, [F]ood, [A]ge, [T]o binary, F[r]om binary, f[u]ckup, Cae[s]arova šifra");
+            Console.WriteLine("Vyber nástroj: [C]alculator, [F]ood, [A]ge, [T]o binary, F[r]om binary, F[u]ckup, Cae[s]arova šifra, [G]ambling nebo zadej číslo úkolu");
             string option = Console.ReadLine();
             switch (option.ToLower())
             {
@@ -321,6 +415,12 @@ class Program
                     break;
                 case "s":
                     caesar();
+                    break;
+                case "g":
+                    Casino();
+                    break;
+                case "1":
+                    Ukol1();
                     break;
                 default:
                     Console.WriteLine("Neplatná volba");
