@@ -182,15 +182,8 @@ class Program
         Console.WriteLine("Jak se jmenuješ?");
         string name = Console.ReadLine();
         string favFood;
-        if (name.ToLower() == "nigger" || name.ToLower() == "nigga")
-        {
-            favFood = "kfc&watermelon";
-        }
-        else
-        {
-            Console.WriteLine("Jaké je tvé oblíbené jídlo?");
-            favFood = Console.ReadLine();
-        }
+        Console.WriteLine("Jaké je tvé oblíbené jídlo?");
+        favFood = Console.ReadLine();
         Console.WriteLine($"Jmenuješ se {name} a tvé oblíbené jídlo je {favFood}");
     }
 
