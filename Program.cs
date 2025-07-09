@@ -7,7 +7,7 @@ class Program
 {
     static void caesar()
     {
-        List<char> alphabet = new List<char> {'a', 'b', 'c', 'd', 'e', 'f', 'g','h', 'i', 'j', 'k', 'l', 'm', 'n','o', 'p', 'q', 'r', 's', 't', 'u','v', 'w', 'x', 'y', 'z'};
+        List<char> alphabet = new List<char> {' ', ',', '.', 'a', 'b', 'c', 'd', 'e', 'f', 'g','h', 'i', 'j', 'k', 'l', 'm', 'n','o', 'p', 'q', 'r', 's', 't', 'u','v', 'w', 'x', 'y', 'z', ' ', ',', '.', 'a', 'b', 'c', 'd', 'e', 'f', 'g','h', 'i', 'j', 'k', 'l', 'm', 'n','o', 'p', 'q', 'r', 's', 't', 'u','v', 'w', 'x', 'y', 'z'};
         
         Console.WriteLine("Zadej text");
         string text = Console.ReadLine();
@@ -17,20 +17,44 @@ class Program
         int letterCount = alphabet.Count();
         int i = 0;
         List<string> result = new List<string>{};
+        Console.WriteLine("Chceš [z]ašifrovat nebo [o]dšífrovat?");
+        string operation = Console.ReadLine();
         foreach(char letter in text)
         {
             int idx = alphabet.IndexOf(letter);
-            if(idx + key > letterCount)
+            if(idx + key > letterCount && operation.ToLower() == "z")
             {
-                Console.WriteLine(letterCount + "Zadal jsi příliš vysoký klíč, písmeno bude ponecháno tak jak je");
+                Console.WriteLine($"Zadal jsi příliš vysoký klíč, písmeno {letter} bude ponecháno tak jak je");
                 result.Add(alphabet[idx].ToString());
+            }
+            else if (idx + key < letterCount && operation.ToLower() == "d")
+            {
+                Console.WriteLine($"Zadal jsi příliš vysoký klíč, písmeno {letter} bude ponecháno tak jak je");
+                result.Add(alphabet[idx].ToString());
+            }
+            else if (operation.ToLower() == "z")
+            {               
+                result.Add(alphabet[idx + key].ToString());
+            }
+            else if (operation.ToLower() == "o")
+            {
+                result.Add(alphabet[idx - key].ToString());
             }
             else
             {
-                result.Add(alphabet[idx + key].ToString());
+                Console.WriteLine("Neplatná operace");
+                break;
             }
         }
-        Console.WriteLine("Zašifrovaný text: " + string.Join("", result));
+        if (operation.ToLower() == "o")
+        {
+            Console.WriteLine("Odšifrovaný text: " + string.Join("", result));
+        }
+        else
+        {
+            Console.WriteLine("Zašifrovaný text: " + string.Join("", result));
+        }
+        
 
     }
 
@@ -269,7 +293,7 @@ class Program
     {
         while (true)
         {
-            Console.WriteLine("Vyber nástroj: [C]alculator, [F]ood, [A]ge, [T]o binary F[r]om binary, f[u]ckup, C[a]esarova šifra");
+            Console.WriteLine("Vyber nástroj: [C]alculator, [F]ood, [A]ge, [T]o binary, F[r]om binary, f[u]ckup, Cae[s]arova šifra");
             string option = Console.ReadLine();
             switch (option.ToLower())
             {
@@ -291,7 +315,7 @@ class Program
                 case "u":
                     fuckUp();
                     break;
-                case "a"
+                case "s":
                     caesar();
                     break;
                 default:
