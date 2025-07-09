@@ -76,7 +76,7 @@ class Program
             if (spinCount <= 3)
             {
                 slot1 = slot2 = rnd.Next(1, range + 1);
-                if (spinCount == 2)
+                if (spinCount == 2 && bet < 2000)
                 { 
                     slot3 = slot1;
                 }
@@ -127,7 +127,7 @@ class Program
                 }
                 else
                 {
-                    win += bet/10;
+                    win += range*10;
                 }
                 Console.WriteLine($"\nBig win! Výhral jsi {win} korun!");
                 money += win;
