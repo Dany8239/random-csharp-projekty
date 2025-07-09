@@ -7,56 +7,67 @@ class Program
 {
     static void caesar()
     {
-        List<char> alphabet = new List<char> {' ', ',', '.', 'a', 'b', 'c', 'd', 'e', 'f', 'g','h', 'i', 'j', 'k', 'l', 'm', 'n','o', 'p', 'q', 'r', 's', 't', 'u','v', 'w', 'x', 'y', 'z', ' ', ',', '.', 'a', 'b', 'c', 'd', 'e', 'f', 'g','h', 'i', 'j', 'k', 'l', 'm', 'n','o', 'p', 'q', 'r', 's', 't', 'u','v', 'w', 'x', 'y', 'z'};
-        
+        List<char> alphabet = new List<char> { ' ', ',', '.', 'a', 'b', 'c', 'd', 'e', 'f', 'g',
+                                            'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
+                                            'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+
         Console.WriteLine("Zadej text");
         string text = Console.ReadLine();
         Console.WriteLine("Zadej klíč(počet posunutí)");
-        int key = int.Parse(Console.ReadLine());
+        if(!int.TryParse(Console.ReadLine(), out int key))
+        {
+            Console.WriteLine("Neplatný klíč");
+            return;
+        }
 
-        int letterCount = alphabet.Count();
-        int i = 0;
-        List<string> result = new List<string>{};
-        Console.WriteLine("Chceš [z]ašifrovat nebo [o]dšífrovat?");
+        int letterCount = alphabet.Count;
+        List<string> result = new List<string>();
+        Console.WriteLine("Chceš [z]ašifrovat nebo [o]dšifrovat?");
         string operation = Console.ReadLine();
-        foreach(char letter in text)
+
+        foreach (char letter in text)
         {
             int idx = alphabet.IndexOf(letter);
-            if(idx + key > letterCount && operation.ToLower() == "z")
+            if (idx == -1)
             {
-                Console.WriteLine($"Zadal jsi příliš vysoký klíč, písmeno {letter} bude ponecháno tak jak je");
-                result.Add(alphabet[idx].ToString());
+                Console.WriteLine($"Znak {letter} není v abecedě, bude ponechán tak jak je");
+                result.Add(letter.ToString());
+                continue;
             }
-            else if (idx + key < letterCount && operation.ToLower() == "d")
+
+            if (operation.ToLower() == "z")
             {
-                Console.WriteLine($"Zadal jsi příliš vysoký klíč, písmeno {letter} bude ponecháno tak jak je");
-                result.Add(alphabet[idx].ToString());
-            }
-            else if (operation.ToLower() == "z")
-            {               
-                result.Add(alphabet[idx + key].ToString());
-            }
+                int newIndex = (idx + key) % letterCount;
+                result.Add(alphabet[newIndex].ToString());
+            } 
             else if (operation.ToLower() == "o")
             {
-                result.Add(alphabet[idx - key].ToString());
+                int newIndex = (idx - key) % letterCount;
+                if (newIndex < 0)
+                    newIndex += letterCount;
+                result.Add(alphabet[newIndex].ToString());
             }
             else
             {
                 Console.WriteLine("Neplatná operace");
-                break;
+                return;
             }
         }
+
         if (operation.ToLower() == "o")
         {
             Console.WriteLine("Odšifrovaný text: " + string.Join("", result));
         }
-        else
+        else if (operation.ToLower() == "z")
         {
             Console.WriteLine("Zašifrovaný text: " + string.Join("", result));
         }
-        
-
+        else
+        {
+            return;
+        }
     }
+
 
     static void fuckUp()
     {
@@ -208,11 +219,11 @@ class Program
         }
         else if (age > 90)
         {
-            Console.WriteLine($"Old ass nigga co tu ještě děláš nech už svoje děti dědit doslova je ti {age} let");
+            Console.WriteLine($"Old ass co tu ještě děláš nech už svoje děti dědit doslova je ti {age} let");
         }
         else
         {
-            Console.WriteLine("$Jsi dospělý, protože ti je {age} let, unc");
+            Console.WriteLine($"Jsi dospělý, protože ti je {age} let, unc");
         }
     }
 
