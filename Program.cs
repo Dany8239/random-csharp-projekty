@@ -34,6 +34,33 @@ class Program
         }
     }
 
+    static void GuessGame()
+    {
+        Random rng = new Random();
+        int number = rng.Next(1, 101);
+        int playerGuess = 0;
+        int attempts = 0;
+        while(playerGuess != number)
+        {
+            attempts++;
+            Console.WriteLine("Zadej svůj tip");
+            if(!int.TryParse(Console.ReadLine(), out playerGuess))
+            {
+                Console.WriteLine("Neplatná hodnota!");
+                continue;
+            }
+            if(playerGuess > number)
+            {
+                Console.WriteLine("To není ono, zkus menší číslo");
+            }
+            else if(playerGuess < number)
+            {
+                Console.WriteLine("To není ono, zkus větší číslo");
+            }
+        }
+        Console.WriteLine($"Gratuluji! Uhádl jsi číslo {number}, zabralo ti to {attempts} pokusů");
+    }
+
     static void Casino()
     {
         //Pocatecni nastaveni
@@ -76,7 +103,7 @@ class Program
             if (spinCount <= 3)
             {
                 slot1 = slot2 = rnd.Next(1, range + 1);
-                if (spinCount == 2 && bet < 2000)
+                if (spinCount == 2 && bet < 2000 && range < 10)
                 { 
                     slot3 = slot1;
                 }
@@ -441,7 +468,7 @@ class Program
     {
         while (true)
         {
-            Console.WriteLine("Vyber nástroj: [C]alculator, [F]ood, [A]ge, [T]o binary, F[r]om binary, F[u]ckup, Cae[s]arova šifra, [G]ambling nebo zadej číslo úkolu");
+            Console.WriteLine("Vyber nástroj: [C]alculator, [F]ood, [A]ge, [T]o binary, F[r]om binary, F[u]ckup, Cae[s]arova šifra, [G]ambling, [N]umber guess game nebo zadej číslo úkolu");
             string option = Console.ReadLine();
             switch (option.ToLower())
             {
@@ -471,6 +498,9 @@ class Program
                     break;
                 case "1":
                     Ukol1();
+                    break;
+                case "n":
+                    GuessGame();
                     break;
                 default:
                     Console.WriteLine("Neplatná volba");
